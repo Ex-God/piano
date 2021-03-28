@@ -1,0 +1,42 @@
+.page {
+    font-family: Georgia; 
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.piano {
+    display: flex;
+    box-shadow: #000000 0 0 10px;
+}
+
+.piano__key {
+    font-weight: bold;
+    user-select: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 1vh;
+}
+
+.white-piano-key {
+    background-color: #ffffff;
+    border: #000000 1px solid;
+    height: 40vh;
+    width: 8vw;
+}
+
+.black-piano-key {
+    color: #ffffff;
+    background-color: #000000;
+    outline: #000000 1px solid;
+    height: 24vh;
+    width: 4vw;
+    margin-left: -2vw;
+    margin-right: -2vw;
+    z-index: 1;
+}
