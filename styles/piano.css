@@ -3,7 +3,7 @@
     box-shadow: #000000 0 0 10px;
 }
 
-.piano__key {
+.piano-key {
     font-weight: bold;
     user-select: none;
     text-align: center;
@@ -11,16 +11,17 @@
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 1vh;
+    transform: .2s;
 }
 
-.white-piano-key {
+.piano-key_white {
     background-color: #ffffff;
     border: #000000 1px solid;
     height: 44vh;
     width: 8vw;
 }
 
-.black-piano-key {
+.piano-key_black {
     color: #ffffff;
     background-color: #000000;
     outline: #000000 1px solid;
@@ -29,4 +30,12 @@
     margin-left: -2vw;
     margin-right: -2vw;
     z-index: 1;
+}
+
+.piano-key_white-active {
+    background-color: #dadada;
+}
+
+.piano-key_black-active {
+    background-color: #333333;
 }
