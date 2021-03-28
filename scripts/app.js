@@ -8,4 +8,3 @@ const PIANO = new Element($page, model.piano, 'afterbegin')
 
 PIANO.render()
 
-console.log(document.getElementById('C#'))
