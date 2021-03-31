@@ -1,12 +1,13 @@
 .piano {
     display: flex;
-    box-shadow: #000000 0 0 10px;
 }
 
 .piano-key {
     font-weight: bold;
     user-select: none;
     text-align: center;
+    box-shadow: 0 10px 10px #333333;
+    border-radius: 0 0 6px 6px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -16,7 +17,6 @@
 
 .piano-key_white {
     background-color: #ffffff;
-    border: #000000 1px solid;
     height: 44vh;
     width: 8vw;
 }
@@ -24,7 +24,6 @@
 .piano-key_black {
     color: #ffffff;
     background-color: #000000;
-    outline: #000000 1px solid;
     height: 30vh;
     width: 4vw;
     margin-left: -2vw;
@@ -33,9 +32,11 @@
 }
 
 .piano-key_white-active {
-    background-color: #dadada;
+    transform: translateY(10px);
+    box-shadow: 0 0 10px #333333;
 }
 
 .piano-key_black-active {
-    background-color: #333333;
+    transform: translateY(4px);
+    box-shadow: 0 0 10px #333333;
 }

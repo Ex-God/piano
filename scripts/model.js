@@ -17,7 +17,7 @@ export const piano = `
         <div class="piano-key piano__key piano-key_white" data-note="G">G</div>
             <audio id="G" class="piano__sound" src="./audios/g1.mp3"></audio>
         <div class="piano-key piano__key piano-key_black" data-note="G#">G#</div>
-            <audio id="G#" class="piano__sound" src="./audios/g1.mp3"></audio>
+            <audio id="G#" class="piano__sound" src="./audios/g1-diez.mp3"></audio>
         <div class="piano-key piano__key piano-key_white" data-note="A">A</div>
             <audio id="A" class="piano__sound" src="./audios/a1.mp3"></audio>
         <div class="piano-key piano__key piano-key_black" data-note="A#">A#</div>
