@@ -17,7 +17,6 @@ function playNote(event) {
     let key = event.target
     let note = document.getElementById(key.dataset.note)
     
-    note.currentTime = 0.4
     note.play()
 
     if (key.classList.contains('piano-key_black')) {
