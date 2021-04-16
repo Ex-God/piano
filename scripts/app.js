@@ -1,5 +1,6 @@
 import * as model from './model.js'
 import { Element } from './classes.js'
+import {toggleMod} from './utils.js'
 
 const $page = document.querySelector('.page')
 
@@ -7,9 +8,11 @@ const PIANO = new Element($page, model.piano, 'afterbegin')
 
 PIANO.render()
 
-let pianoKeys = document.querySelectorAll('.piano-key')
+let $pianoKeys = document.querySelectorAll('.piano-key')
+let track = []
+let record = false
 
-pianoKeys.forEach(key => {
+$pianoKeys.forEach(key => {
     key.addEventListener('click', playNote)
 })
 
@@ -28,4 +31,40 @@ function playNote(event) {
         key.classList.add('piano-key_white-active')
         note.addEventListener('ended', () => key.classList.remove('piano-key_white-active'))
     }    
+
+    if (record) {
+        track.push(note)
+        console.log(track)
+    }
+}
+
+const $recordBtn = document.querySelector('.record')
+
+$recordBtn.addEventListener('click', recordTrack)
+
+function recordTrack() {
+    toggleMod($recordBtn, 'active')
+
+    if (record) {
+        track = []
+    }
+
+    record = !record
+}
+
+const $playBtn = document.querySelector('.play')
+let currency = 0
+
+$playBtn.addEventListener('click', playTrack)
+
+function playTrack() {
+    currency = 0
+
+    track.forEach(note => {
+        setTimeout(() => {
+            note.play()
+        }, currency)
+
+        currency += 500
+    })
 }
