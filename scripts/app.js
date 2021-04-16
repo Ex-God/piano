@@ -58,11 +58,21 @@ let currency = 0
 $playBtn.addEventListener('click', playTrack)
 
 function playTrack() {
+    toggleMod($playBtn, 'active')
+
+    let count = 0
     currency = 0
 
     track.forEach(note => {
         setTimeout(() => {
+            note.currentTime = 0
             note.play()
+
+            count ++
+
+            if (count === track.length) {
+                toggleMod($playBtn, 'active')
+            }
         }, currency)
 
         currency += 500
