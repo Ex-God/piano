@@ -1,0 +1,55 @@
+.header {
+    background-color: #ffffff;
+    display: flex;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.controls {
+    display: flex;
+    width: 140px;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.controls__record {
+    background: #ebebeb;
+    border: #000000 2px solid;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.controls__record::before {
+    content: "";
+    background-color: #ff4040;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.controls__play {
+    background-color: transparent;
+    border: #000000 2px solid;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.controls__play::before {
+    content: "";
+    background-color: #00ff00;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 8px;  
+}
