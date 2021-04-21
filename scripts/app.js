@@ -3,14 +3,21 @@ import { Element } from './classes.js'
 import {toggleMod} from './utils.js'
 
 const $page = document.querySelector('.page')
-
 const PIANO = new Element($page, model.piano, 'afterbegin')
+let DATE = new Date()
 
 PIANO.render()
 
+const options = {
+    track: [],
+    record: false
+}
+
 let $pianoKeys = document.querySelectorAll('.piano-key')
-let track = []
-let record = false
+const $recordBtn = document.querySelector('.record')
+const $playBtn = document.querySelector('.play')
+
+$playBtn.disable = !options.record
 
 $pianoKeys.forEach(key => {
     key.addEventListener('click', playNote)
@@ -32,49 +39,42 @@ function playNote(event) {
         note.addEventListener('ended', () => key.classList.remove('piano-key_white-active'))
     }    
 
-    if (record) {
-        track.push(note)
-        console.log(track)
+    if (options.record) {
+        DATE = new Date()
+        let time = DATE.getTime()
+
+        options.track.push([note, time])
+        console.log(options.track)
     }
 }
-
-const $recordBtn = document.querySelector('.record')
 
 $recordBtn.addEventListener('click', recordTrack)
 
 function recordTrack() {
     toggleMod($recordBtn, 'active')
 
-    if (record) {
-        track = []
+    if (options.record) {
+        options.track = []
     }
 
-    record = !record
+    options.record = !options.record
+    $playBtn.disable = !options.record
 }
-
-const $playBtn = document.querySelector('.play')
-let currency = 0
 
 $playBtn.addEventListener('click', playTrack)
 
-function playTrack() {
-    toggleMod($playBtn, 'active')
-
-    let count = 0
-    currency = 0
-
-    track.forEach(note => {
-        setTimeout(() => {
-            note.currentTime = 0
-            note.play()
-
-            count ++
-
-            if (count === track.length) {
-                toggleMod($playBtn, 'active')
-            }
-        }, currency)
-
-        currency += 500
-    })
+async function playTrack() {
+    for (let i = 0; i < options.track.length; i++) {
+        let note = options.track[i]
+        let currency = (note[1] - options.track[0][1])
+        
+        await sleep(currency)
+        note[0].currentTime = 0
+        note[0].play()
+        console.log(currency)
+    }
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
