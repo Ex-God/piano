@@ -4,7 +4,6 @@ import {toggleMod} from './utils.js'
 
 const $page = document.querySelector('.page')
 const PIANO = new Element($page, model.piano, 'afterbegin')
-let DATE = new Date()
 
 PIANO.render()
 
@@ -40,12 +39,15 @@ function playNote(event) {
     }    
 
     if (options.record) {
-        DATE = new Date()
-        let time = DATE.getTime()
+        let date = getDate()
+        let time = date.getTime()
 
         options.track.push([note, time])
-        console.log(options.track)
     }
+}
+
+function getDate() {
+    return new Date()
 }
 
 $recordBtn.addEventListener('click', recordTrack)
@@ -63,15 +65,15 @@ function recordTrack() {
 
 $playBtn.addEventListener('click', playTrack)
 
-async function playTrack() {
+function playTrack() {
     for (let i = 0; i < options.track.length; i++) {
         let note = options.track[i]
-        let currency = (note[1] - options.track[0][1])
+        let delay = (note[1] - options.track[0][1])
         
-        await sleep(currency)
-        note[0].currentTime = 0
-        note[0].play()
-        console.log(currency)
+        sleep(delay).then(() => {
+            note[0].currentTime = 0
+            note[0].play()
+        })
     }
 }
 
